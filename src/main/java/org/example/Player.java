@@ -1,190 +1,141 @@
 package org.example;
 
-public class Player {
-  private int id;
-  private double points;
-  private double orb; // offensive rebounds
-  private double drb; // defensive rebounds
-  private double assists;
-  private double blocks; // 火鍋
-  private double steals; // 抄截
-  private double turnovers; // 失誤
-  private double pf; // 犯規
-  private double tpa; // 3-pointer attempts
-  private double tpm; // 3-pointer made
-  private double fga; // field goal attempts
-  private double fgm; // field goal made
-  private double fta; // free throw attempts
-  private double ftm; // free throw made
-  private int plusminus; // plus / minus
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-  public Player(int id) {
-    this.id = id;
-  }
+public class Player extends Mainpart {
+    int playernumber = 0;
+    int[] playerlist;
+    String playerteam = "";
+    private PlayerData playerData;
+    private Container cp;
+    private JPanel jpnN = new JPanel(new GridLayout(1,3,1,1));
+    private Label team = new Label("A");
+    private Label player = new Label("1");
+    private Label blank = new Label();
 
-  public int getId() {
-    return id;
-  }
+    private JPanel jpnC = new JPanel(new GridLayout(2,3,1,1));
+    private JButton jbtnPoint = new JButton("得分 Point");
+    private JButton jbtnTraveling = new JButton("失誤 Traveling");
+    private JButton jbtnFoul = new JButton("犯規 Foul");
+    private JButton jbtnSteel = new JButton("抄截 Steel");
+    private JButton jbtnRebound = new JButton("籃板 Rebound");
+    private JButton jbtnSubstitution = new JButton("換人 Substitution");
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    private JPanel jpnS = new JPanel(new GridLayout(1,3,1,1));
+    private Label blank1 = new Label();
+    private Label blank2 = new Label();
+    private JButton jbtnCancel = new JButton("Cancel");
 
-  public double getPoints() {
-    return points;
-  }
+    public Player(String team, int[] list, PlayerData p){
+//        playernumber = num;
+        playerteam = team;
+        playerlist = list;
+        playerData = p;
+        init();
+    }
 
-  public void setPoints(double points) {
-    this.points = points;
-  }
+    private void init() {
+        cp = this.getContentPane();
+        cp.setLayout(new BorderLayout(3,3));
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setBounds(400,50,800,400);
 
-  public double getOrb() {
-    return orb;
-  }
+        team.setText("Team : " + playerteam);
+        player.setText("Player : " + playernumber);
 
-  public void setOrb(double orb) {
-    this.orb = orb;
-  }
+        jpnN.add(team);
+        jpnN.add(player);
+        jpnN.add(blank);
 
-  public double getDrb() {
-    return drb;
-  }
+        cp.add(jpnN,BorderLayout.NORTH);
 
-  public void setDrb(double drb) {
-    this.drb = drb;
-  }
+        jpnC.add(jbtnPoint);
+        jpnC.add(jbtnTraveling);
+        jpnC.add(jbtnFoul);
+        jpnC.add(jbtnSteel);
+        jpnC.add(jbtnRebound);
+        jpnC.add(jbtnSubstitution);
 
-  public double getAssists() {
-    return assists;
-  }
+        cp.add(jpnC,BorderLayout.CENTER);
 
-  public void setAssists(double assists) {
-    this.assists = assists;
-  }
+        jpnS.add(blank1);
+        jpnS.add(blank2);
+        jpnS.add(jbtnCancel);
 
-  public double getBlocks() {
-    return blocks;
-  }
+        cp.add(jpnS,BorderLayout.SOUTH);
 
-  public void setBlocks(double blocks) {
-    this.blocks = blocks;
-  }
+        //頁面跳轉至主畫面
+        jbtnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.mainpart.setVisible(true);
+                Player.this.dispose();
+            }
+        });
 
-  public double getSteals() {
-    return steals;
-  }
+        //得分
+        jbtnPoint.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Point point = new Point(playerteam, playerlist, playernumber);
+                point.setVisible(true);
+                Player.this.dispose();
+            }
+        });
 
-  public void setSteals(double steals) {
-    this.steals = steals;
-  }
+        //失誤
+        jbtnTraveling.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Traveling traveling = new Traveling(playerteam, playernumber);
+                traveling.setVisible(true);
+                Player.this.dispose();
+            }
+        });
 
-  public double getTurnovers() {
-    return turnovers;
-  }
+        //犯規
+        jbtnFoul.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Foul foul = new Foul(playerteam, playernumber);
+                foul.setVisible(true);
+                Player.this.dispose();
+            }
+        });
 
-  public void setTurnovers(double turnovers) {
-    this.turnovers = turnovers;
-  }
+        //抄截
+        jbtnSteel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Steel steel = new Steel(playerteam, playernumber);
+                steel.setVisible(true);
+                Player.this.dispose();
+            }
+        });
 
-  public double getTpa() {
-    return tpa;
-  }
+        //籃板
+        jbtnRebound.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Rebound rebound = new Rebound(playerteam, playernumber);
+                rebound.setVisible(true);
+                Player.this.dispose();
+            }
+        });
 
-  public void setTpa(double tpa) {
-    this.tpa = tpa;
-  }
+        //換人
+        jbtnSubstitution.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Substitution substitution = new Substitution(playerteam, playernumber);
+                substitution.setVisible(true);
+                Player.this.dispose();
+            }
+        });
 
-  public double getTpm() {
-    return tpm;
-  }
+    }
 
-  public void setTpm(double tpm) {
-    this.tpm = tpm;
-  }
-
-  public double getFga() {
-    return fga;
-  }
-
-  public void setFga(double fga) {
-    this.fga = fga;
-  }
-
-  public double getFgm() {
-    return fgm;
-  }
-
-  public void setFgm(double fgm) {
-    this.fgm = fgm;
-  }
-
-  public void setFta(double fta) {
-    this.fta = fta;
-  }
-
-  public void setFtm(double ftm) {
-    this.ftm = ftm;
-  }
-
-  public double getFta() {
-    return fta;
-  }
-
-  public double getFtm() {
-    return ftm;
-  }
-
-  public double getPf() {
-    return pf;
-  }
-
-  public void setPf(double pf) {
-    this.pf = pf;
-  }
-
-  // plus / minus
-  public void setPlusminus(int score) {
-    plusminus += score;
-  }
-
-  public int getPlusminus() {
-    return plusminus;
-  }
-
-  /*
-  -----------------
-   After game data
-  -----------------
-*/
-
-  // Effective Field-Goal Percentage
-  public double eFG() {
-    return (fgm + 0.5 * tpm) / fga;
-  }
-
-  // True Shooting Percentage
-  public double ts() {
-    return points / 2 * (fga + 0.44 * fta);
-  }
-
-  // Free throw percentage
-  public double ft() {
-    return fta / ftm;
-  }
-
-  // field goal percentage
-  public double fg() {
-    return fga / fgm;
-  }
-
-  // 3-points percentage
-  public double tfg() {
-    return tpa / tpm;
-  }
-
-  // efficiency
-  public double eff() {
-    return (points + drb + orb + assists + steals + blocks)
-            - (fgm - fga) + (ftm - fta) + turnovers;
-  }
-}
+};
