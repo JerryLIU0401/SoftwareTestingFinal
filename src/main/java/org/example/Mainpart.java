@@ -30,8 +30,8 @@ public class Mainpart extends JFrame {
   private Label time = new Label("Time : ");
   private Label pauseA = new Label("Pause A : ");
   private Label pauseB = new Label("Pause B : ");
-  private Label scoreA = new Label("Score A : ");
-  private Label scoreB = new Label("Score B : ");
+  private Label scoreA = new Label("Score A : 0");
+  private Label scoreB = new Label("Score B : 0");
 
 
   private JButton jbtnA1 = new JButton("1");
@@ -257,11 +257,11 @@ public class Mainpart extends JFrame {
     jpnAll.add(jpnA);
     jpnAll.add(jpnB);
 
-    jpnS.add(pauseA);
+//    jpnS.add(pauseA);
     jpnS.add(scoreA);
-    jpnS.add(time);
+//    jpnS.add(time);
     jpnS.add(scoreB);
-    jpnS.add(pauseB);
+//    jpnS.add(pauseB);
 
     cp.add(jpnS, BorderLayout.SOUTH);
     cp.add(jpnAll, BorderLayout.CENTER);
@@ -270,8 +270,7 @@ public class Mainpart extends JFrame {
     jmiStart.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        Login login = new Login();
-        login.setVisible(true);
+        Main.login.setVisible(true);
         Mainpart.this.setVisible(false);
       }
     });

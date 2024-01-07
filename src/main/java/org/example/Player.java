@@ -130,7 +130,7 @@ public class Player extends Mainpart {
         jbtnSubstitution.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Substitution substitution = new Substitution(playerteam, playernumber);
+                Substitution substitution = new Substitution(playerteam, playernumber, playerlist);
                 substitution.setVisible(true);
                 Player.this.dispose();
             }

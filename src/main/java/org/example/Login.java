@@ -78,12 +78,12 @@ public class Login extends JFrame {
     jbnStart.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (Mainpart.playerDataA.size() < 5 && Mainpart.playerDataB.size() < 5) {
-          JOptionPane.showMessageDialog(new JFrame(), "人數必須大於6人", "Error", JOptionPane.INFORMATION_MESSAGE);
+        if (Mainpart.playerDataA.size() < 5 || Mainpart.playerDataB.size() < 5) {
+          JOptionPane.showMessageDialog(new JFrame(), "兩邊相加人數必須大於10人", "Error", JOptionPane.INFORMATION_MESSAGE);
         } else {
           Main.mainpart.setVisible(true);
           Main.mainpart.setPlayer();
-          Login.this.dispose();
+          Main.login.setVisible(false);
         }
       }
     });
@@ -96,8 +96,12 @@ public class Login extends JFrame {
         if (Save.searchTeamAData(p)) {
           JOptionPane.showMessageDialog(new JFrame(), "已經有這位球員了!!", "Error", JOptionPane.INFORMATION_MESSAGE);
         } else {
-          Mainpart.playerDataA.add(p);
-          playerListA.setText(playerListA.getText() + " " + p.getId());
+          if (Mainpart.playerDataA.size() == 12) {
+            JOptionPane.showMessageDialog(new JFrame(), "已經滿員了!!", "Error", JOptionPane.INFORMATION_MESSAGE);
+          } else {
+            Mainpart.playerDataA.add(p);
+            playerListA.setText(playerListA.getText() + " " + p.getId());
+          }
         }
       }
     });
@@ -110,8 +114,12 @@ public class Login extends JFrame {
         if (Save.searchTeamBData(p)) {
           JOptionPane.showMessageDialog(new JFrame(), "已經有這位球員了!!", "Error", JOptionPane.INFORMATION_MESSAGE);
         } else {
-          Mainpart.playerDataB.add(p);
-          playerListB.setText(playerListB.getText() + " " + p.getId());
+          if (Mainpart.playerDataB.size() == 12) {
+            JOptionPane.showMessageDialog(new JFrame(), "已經滿員了!!", "Error", JOptionPane.INFORMATION_MESSAGE);
+          } else {
+            Mainpart.playerDataB.add(p);
+            playerListB.setText(playerListB.getText() + " " + p.getId());
+          }
         }
       }
     });

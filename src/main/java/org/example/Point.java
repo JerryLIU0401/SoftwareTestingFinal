@@ -89,27 +89,30 @@ public class Point extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e) {
         double score = Double.parseDouble(jcbpoint.getSelectedItem().toString());
-        if (score == 3) {
-          playerData.addTpm();
-        } else if (score == 2) {
-          playerData.addFgm();
-        } else {
-          playerData.addFtm();
-        }
         if (jcbState.getSelectedItem().toString().equals("Get")) {
-          playerData.setPoints(playerData.getPoints() + score);
           if (score == 3) {
-            playerData.addTpa();
+            playerData.addTpm();
           } else if (score == 2) {
-            playerData.addFga();
+            playerData.addFgm();
           } else {
-            playerData.addFta();
+            playerData.addFtm();
           }
+        }
+
+        playerData.setPoints(playerData.getPoints() + score);
+        if (score == 3) {
+          playerData.addTpa();
+          playerData.addFga();
+        } else if (score == 2) {
+          playerData.addFga();
+        } else {
+          playerData.addFta();
+        }
 //          if (!jcbAST.getSelectedItem().toString().equals("X")) {
 //            Save.setData(playerteam, playernumber, playerData);
 //          }
-          Save.setData(playerteam, playernumber, playerData);
-        }
+        Save.setData(playerteam, playernumber, playerData);
+
         Main.mainpart.setVisible(true);
         Point.this.dispose();
       }
