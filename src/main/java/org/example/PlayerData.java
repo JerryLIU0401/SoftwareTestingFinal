@@ -10,16 +10,16 @@ public class PlayerData {
   private double steals = 0; // 抄截
   private double turnovers = 0; // 失誤
   private double pf = 0; // 犯規
-  private double tpa; // 3-pointer attempts
-  private double tpm; // 3-pointer made
-  private double fga; // field goal attempts
-  private double fgm; // field goal made
-  private double fta; // free throw attempts
-  private double ftm; // free throw made
-  private int plusminus; // plus / minus
+  private double tpa = 0; // 3-pointer attempts
+  private double tpm = 0; // 3-pointer made
+  private double fga = 0; // field goal attempts
+  private double fgm = 0; // field goal made
+  private double fta = 0; // free throw attempts
+  private double ftm = 0; // free throw made
+  private int plusminus = 0; // plus / minus
 
-  public PlayerData() {
-
+  public PlayerData(int id) {
+    this.id = id;
   }
 
   public int getId() {
@@ -199,5 +199,9 @@ public class PlayerData {
   public double eff() {
     return (points + drb + orb + assists + steals + blocks)
             - (fgm - fga) + (ftm - fta) + turnovers;
+  }
+
+  public double totalRb(){
+    return orb + drb;
   }
 }

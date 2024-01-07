@@ -75,6 +75,8 @@ public class Substitution extends JFrame {
     jbnSubmit.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        String s = jcbsubstitution.getSelectedItem().toString();
+        Main.mainpart.change(playernumber, Integer.parseInt(s), playerteam);
         Main.mainpart.setVisible(true);
         Substitution.this.dispose();
       }

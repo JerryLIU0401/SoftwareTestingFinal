@@ -11,6 +11,7 @@ public class Traveling extends JFrame {
   int playernumber = 0;
   int[] playerlist;
   String playerteam = "";
+  PlayerData playerData;
 
   private JPanel jpnN = new JPanel(new GridLayout(1, 3, 1, 1));
   private Label teamAndPlayer = new Label();
@@ -26,6 +27,7 @@ public class Traveling extends JFrame {
   public Traveling(String team, int num) {
     playernumber = num;
     playerteam = team;
+    playerData = Mainpart.getPlayer(team, num);
     init();
   }
 
@@ -36,6 +38,7 @@ public class Traveling extends JFrame {
     this.setBounds(400, 50, 800, 400);
 
     teamAndPlayer.setText("Team : " + playerteam + " Player : " + playernumber);
+    title.setText("Traveling : " + playerData.getTurnovers());
     jpnN.add(teamAndPlayer);
     jpnN.add(title);
     jpnN.add(blank);
@@ -62,11 +65,8 @@ public class Traveling extends JFrame {
     jbnSubmit.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (playerteam.equals("A")) {
-          Mainpart.playerDataA[playernumber].addTurnovers();
-        } else {
-          Mainpart.playerDataB[playernumber].addTurnovers();
-        }
+        playerData.addTurnovers();
+        Save.setData(playerteam, playernumber, playerData);
         Main.mainpart.setVisible(true);
         Traveling.this.dispose();
       }

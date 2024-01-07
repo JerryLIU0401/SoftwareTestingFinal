@@ -11,6 +11,8 @@ public class Foul extends JFrame {
   int playernumber = 0;
   String playerteam = "";
 
+  PlayerData playerData;
+
   private JPanel jpnN = new JPanel(new GridLayout(1, 3, 1, 1));
   private Label teamAndPlayer = new Label();
   private Label title = new Label("Foul");
@@ -25,6 +27,7 @@ public class Foul extends JFrame {
   public Foul(String team, int num) {
     playernumber = num;
     playerteam = team;
+    playerData = Mainpart.getPlayer(team, num);
     init();
   }
 
@@ -35,6 +38,7 @@ public class Foul extends JFrame {
     this.setBounds(400, 50, 800, 400);
 
     teamAndPlayer.setText("Team : " + playerteam + " Player : " + playernumber);
+    title.setText("Foul : " + playerData.getPf());
     jpnN.add(teamAndPlayer);
     jpnN.add(title);
     jpnN.add(blank);
@@ -61,11 +65,8 @@ public class Foul extends JFrame {
     jbnSubmit.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (playerteam.equals("A")) {
-          Mainpart.playerDataA[playernumber].addPf();
-        } else {
-          Mainpart.playerDataB[playernumber].addPf();
-        }
+        playerData.addPf();
+        Save.setData(playerteam, playernumber, playerData);
         Main.mainpart.setVisible(true);
         Foul.this.dispose();
       }

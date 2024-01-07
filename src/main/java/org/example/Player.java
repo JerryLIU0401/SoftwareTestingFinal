@@ -29,11 +29,11 @@ public class Player extends Mainpart {
     private Label blank2 = new Label();
     private JButton jbtnCancel = new JButton("Cancel");
 
-    public Player(String team, int[] list, PlayerData p){
-//        playernumber = num;
+    public Player(String team, int[] list, int num){
+        playernumber = num;
         playerteam = team;
         playerlist = list;
-        playerData = p;
+//        playerData = p;
         init();
     }
 
@@ -105,7 +105,7 @@ public class Player extends Mainpart {
                 Player.this.dispose();
             }
         });
-
+//
         //抄截
         jbtnSteel.addActionListener(new ActionListener() {
             @Override
@@ -115,7 +115,7 @@ public class Player extends Mainpart {
                 Player.this.dispose();
             }
         });
-
+//
         //籃板
         jbtnRebound.addActionListener(new ActionListener() {
             @Override
