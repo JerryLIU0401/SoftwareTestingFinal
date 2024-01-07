@@ -89,24 +89,25 @@ public class Point extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e) {
         double score = Double.parseDouble(jcbpoint.getSelectedItem().toString());
-        if (jcbState.getSelectedItem().toString().equals("Get")) {
-          if (score == 3) {
-            playerData.addTpm();
-          } else if (score == 2) {
-            playerData.addFgm();
-          } else {
-            playerData.addFtm();
-          }
+
+        if (score == 3) {
+          playerData.addTpm();
+          playerData.addFgm();
+        } else if (score == 2) {
+          playerData.addFgm();
+        } else {
+          playerData.addFtm();
         }
 
-        playerData.setPoints(playerData.getPoints() + score);
-        if (score == 3) {
-          playerData.addTpa();
-          playerData.addFga();
-        } else if (score == 2) {
-          playerData.addFga();
-        } else {
-          playerData.addFta();
+        if (jcbState.getSelectedItem().toString().equals("Get")) {
+          playerData.setPoints(playerData.getPoints() + score);
+          if (score == 3) {
+            playerData.addTpa();
+          } else if (score == 2) {
+            playerData.addFga();
+          } else {
+            playerData.addFta();
+          }
         }
 //          if (!jcbAST.getSelectedItem().toString().equals("X")) {
 //            Save.setData(playerteam, playernumber, playerData);
