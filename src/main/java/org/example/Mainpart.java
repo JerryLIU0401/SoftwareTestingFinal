@@ -220,6 +220,22 @@ public class Mainpart extends JFrame {
     }
   }
 
+  public void setScoreA(){
+    int score = 0;
+    for(PlayerData p : playerDataA){
+      score += (int) p.getPoints();
+    }
+    scoreA.setText("ScoreA : " + score);
+  }
+
+  public void setScoreB(){
+    int score = 0;
+    for(PlayerData p : playerDataB){
+      score += (int) p.getPoints();
+    }
+    scoreB.setText("ScoreB : " + score);
+  }
+
   public Mainpart() {
     init();
   }

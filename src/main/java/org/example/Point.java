@@ -113,6 +113,11 @@ public class Point extends JFrame {
 //            Save.setData(playerteam, playernumber, playerData);
 //          }
         Save.setData(playerteam, playernumber, playerData);
+        if(playerteam.equals("A")){
+          Main.mainpart.setScoreA();
+        }else{
+          Main.mainpart.setScoreB();
+        }
 
         Main.mainpart.setVisible(true);
         Point.this.dispose();

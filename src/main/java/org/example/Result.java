@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 public class Result extends JFrame {
   private Container cp;
   String team = "";
-  Object[][] data = new Object[12][15];
-  String[] columns = {"Player", "PTS", "AST", "ORB", "DRB", "BLK", "ST", "TO", "PF", "TS", "FT", "FG", "TFG", "EFF", "+/-"};
+  Object[][] data = new Object[12][14];
+  String[] columns = {"Player", "PTS", "AST", "ORB", "DRB", "BLK", "ST", "TO", "PF", "TS", "FT", "FG", "TFG", "EFF"};
   private JPanel jpnN = new JPanel(new GridLayout(1, 3, 1, 1));
   private Label Lteam = new Label();
   private Label title = new Label("Result");
@@ -56,7 +56,7 @@ public class Result extends JFrame {
       data[i][12] = p.tfg();
       data[i][13] = p.eff();
 //                p.setPlusminus(p.getPoints());
-      data[i][14] = 0;
+//      data[i][14] = 0;
 
     }
   }
